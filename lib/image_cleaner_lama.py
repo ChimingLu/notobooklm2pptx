@@ -60,7 +60,8 @@ def get_lama_model(model_name):
     if model_name not in _lama_models:
         try:
             from iopaint.model_manager import ModelManager
-            print(f"  [Lama] 正在載入模型: {model_name} (首次需下載)...")
+            
+            print(f"  [Lama] 正在載入模型: {model_name}...")
             
             # Try loading via ModelManager
             try:
@@ -112,12 +113,20 @@ def clean_image_with_lama(pil_image, mask, model_name='lama'):
     Returns:
         處理後的 PIL Image 或 None
     """
+    # Check if model is known to fail, failover silently
+    global _failed_models
+    if model_name in _failed_models and model_name != 'cv2':
+        return clean_image_with_lama(pil_image, mask, model_name='cv2')
+
     try:
         from iopaint.schema import InpaintRequest, HDStrategy, LDMSampler
         
         # 取得模型 (使用快取)
         model = get_lama_model(model_name)
         
+        if model is None:
+             raise RuntimeError(f"無法載入模型: {model_name}")
+
         # 轉換為 numpy array
         image_np = np.array(pil_image)
         mask_np = np.array(mask)
@@ -144,9 +153,14 @@ def clean_image_with_lama(pil_image, mask, model_name='lama'):
         print("  [錯誤] 未安裝 iopaint。請執行: pip install iopaint")
         return None
     except Exception as e:
-        print(f"  [錯誤] Lama Cleaner 失敗: {e}")
+        # Only log error if not already known/handled
+        if model_name not in _failed_models:
+             print(f"  [錯誤] Lama Cleaner 失敗: {e}")
+        
         if model_name != 'cv2':
-            print(f"  [提示] 嘗試切換至基本修復模式 (cv2)...")
+            # Only log switching message if it's the first time
+            if model_name not in _failed_models:
+                print(f"  [提示] 嘗試切換至基本修復模式 (cv2)...")
             return clean_image_with_lama(pil_image, mask, model_name='cv2')
         return None
 

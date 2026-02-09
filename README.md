@@ -130,6 +130,8 @@ A: **完全不需要！** 舊版依賴 Gemini API，但本版本已移除所有 
 
 ## 授權
 
+本專案採用 **Apache License 2.0** 授權。詳細內容請參閱 [LICENSE](LICENSE) 檔案。
+
 本專案使用多個開源組件：
 - [Lama Cleaner (IOPaint)](https://github.com/Sanster/IOPaint) - Apache 2.0
 - [EasyOCR](https://github.com/JaidedAI/EasyOCR) - Apache 2.0

@@ -37,8 +37,11 @@ def main():
         
     # Get PDF file
     pdf_path = questionary.path("請輸入 PDF 檔案路徑：").ask()
-    if not os.path.exists(pdf_path):
-        console.print("[bold red]錯誤：檔案不存在[/bold red]")
+    if pdf_path:
+        pdf_path = pdf_path.strip('"').strip("'")
+        
+    if not pdf_path or not os.path.exists(pdf_path):
+        console.print(f"[bold red]錯誤：檔案不存在: {pdf_path}[/bold red]")
         return
 
     # Convert PDF to Images
