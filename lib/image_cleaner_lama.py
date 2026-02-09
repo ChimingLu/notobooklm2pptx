@@ -143,6 +143,12 @@ def clean_image_with_lama(pil_image, mask, model_name='lama'):
         # print(f"  [Lama] 處理中...") # Reduce log noise
         result_np = model(image_np, mask_np, config)
         
+        # IOPaint models return BGR, but PIL expects RGB
+        # We need to convert BGR back to RGB
+        if len(result_np.shape) == 3 and result_np.shape[2] == 3:
+            import cv2
+            result_np = cv2.cvtColor(result_np, cv2.COLOR_BGR2RGB)
+        
         # 轉回 PIL Image
         result = Image.fromarray(result_np)
         
