@@ -1,0 +1,10 @@
+python-pptx
+pypdfium2
+rich
+questionary
+flet
+easyocr
+iopaint
+opencv-python
+scikit-image
+numpy
