@@ -1,0 +1,15 @@
+gui.py:232: DeprecationWarning: app() is deprecated since version 0.80.0. Use run() instead.
+  ft.app(main)
+Traceback (most recent call last):
+  File "gui.py", line 232, in <module>
+    ft.app(main)
+  File "flet\utils\deprecated.py", line 40, in wrapper
+  File "flet\app.py", line 43, in app
+  File "flet\app.py", line 96, in run
+  File "asyncio\runners.py", line 44, in run
+  File "asyncio\base_events.py", line 646, in run_until_complete
+  File "flet\app.py", line 228, in run_async
+  File "flet_desktop\__init__.py", line 54, in open_flet_view_async
+  File "flet_desktop\__init__.py", line 108, in __locate_and_unpack_flet_view
+FileNotFoundError: Flet executable not found at C:\Users\LU\AI\notobooklm2pptx\dist\NotebookLM2PPTX\_internal\flet_desktop\app
+[PYI-29796:ERROR] Failed to execute script 'gui' due to unhandled exception!

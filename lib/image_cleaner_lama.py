@@ -6,6 +6,8 @@
 from PIL import Image, ImageDraw
 import numpy as np
 import io
+# 確保環境變數 (如 HF_HOME) 已設定
+import lib.config
 
 def create_text_mask_from_ocr(pil_image, text_blocks, expand_pixels=5):
     """

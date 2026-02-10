@@ -65,9 +65,16 @@ def get_easyocr_reader():
     global _easyocr_reader
     if _easyocr_reader is None:
         import easyocr
-        # Initialize reader (will download model on first use)
-        # Check for CUDA availability if needed, but defaulting to CPU for broad compatibility as per original code
-        _easyocr_reader = easyocr.Reader(['ch_tra', 'en'], gpu=False)
+        from lib.config import MODELS_DIR
+        # Initialize reader using local models directory
+        try:
+            _easyocr_reader = easyocr.Reader(['ch_tra', 'en'], gpu=False, model_storage_directory=MODELS_DIR, download_enabled=False)
+        except Exception as e:
+            print(f"  [EasyOCR Init Error] {e}")
+            # Fallback enabling download if local fails? Or just raise.
+            # Given "offline" requirement, report error clearly.
+            print(f"  [EasyOCR] 請確認模型檔案已存在於: {MODELS_DIR}")
+            raise e
     return _easyocr_reader
 
 def extract_text_with_easyocr(pil_image):

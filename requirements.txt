@@ -8,3 +8,4 @@ iopaint
 opencv-python
 scikit-image
 numpy
+pyinstaller

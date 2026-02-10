@@ -1,0 +1,6 @@
+gui.py:232: DeprecationWarning: app() is deprecated since version 0.80.0. Use run() instead.
+  ft.app(main)
+gui.py:164: DeprecationWarning: ElevatedButton is deprecated since version 0.80.0 and will be removed in version 1.0. Use Button instead.
+  pick_files_button = ft.ElevatedButton(
+gui.py:218: DeprecationWarning: all() is deprecated since version 0.80.0 and will be removed in version 0.83.0. Use Border.all() instead.
+  border=ft.border.all(1, ft.Colors.GREY),

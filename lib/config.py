@@ -17,16 +17,58 @@ DEFAULT_SLIDE_HEIGHT_INCHES = 7.5
 DEFAULT_FONT_SIZE = 12
 
 # PDF 處理設定
-DEFAULT_PDF_DPI = 100  # PDF 轉圖片的 DPI
+import os
+import sys
+
+# 資源路徑設定 (支援 PyInstaller)
+def get_resource_path(relative_path):
+    """取得資源的絕對路徑，支援開發環境與 PyInstaller 打包環境"""
+    try:
+        # PyInstaller 建立的臨時資料夾
+        base_path = sys._MEIPASS
+    except Exception:
+        # 開發環境：專案根目錄 (lib 的上一層)
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    
+    return os.path.join(base_path, relative_path)
+
+# 模型存放與環境變數設定 (強制離線模式)
+MODELS_DIR = get_resource_path("models")
+if not os.path.exists(MODELS_DIR):
+    # 如果是開發環境且目錄不存在，也不要報錯，讓它自動建立或由使用者建立
+    # 在打包環境中，這裡應該是唯讀的，但 PyInstaller 會解壓到臨時目錄，是可讀寫的嗎？
+    # 通常 _MEIPASS 是唯讀的，但我們只需要讀取。
+    # 如果需要下載，應該在打包前完成。
+    # 這裡我們嘗試建立 (針對開發環境)
+    try:
+        os.makedirs(MODELS_DIR, exist_ok=True)
+    except Exception:
+        pass
+
+# 設定環境變數，引導庫使用我們的模型目錄
+os.environ["HF_HOME"] = MODELS_DIR
+os.environ["TORCH_HOME"] = MODELS_DIR
+# EasyOCR 的 model_storage_directory 會在呼叫時傳入，但也可以設個變數方便參照
 
 # 輸出路徑設定
-import os
-OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "output")  # 輸出資料夾路徑
+# 預設輸出到使用者的「文件」資料夾下的 NotebookLM2PPTX_Output，避免權限問題
+DEFAULT_OUTPUT_DIR = os.path.join(os.path.expanduser("~"), "Documents", "NotebookLM2PPTX_Output")
+OUTPUT_DIR = DEFAULT_OUTPUT_DIR
+
+def set_output_dir(path):
+    """設定輸出的資料夾路徑"""
+    global OUTPUT_DIR
+    OUTPUT_DIR = path
+    ensure_output_dir()
 
 def ensure_output_dir():
     """確保輸出資料夾存在"""
     if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
+        try:
+            os.makedirs(OUTPUT_DIR)
+        except OSError as e:
+            print(f"Error creating output directory {OUTPUT_DIR}: {e}")
+            # Fallback to temp if documents fails? No, let it fail explicitly or handle in GUI.
     return OUTPUT_DIR
 
 def get_output_path(filename):

@@ -166,12 +166,48 @@ def main(page: ft.Page):
         on_click=pick_files_click
     )
 
+    # 選擇輸出資料夾功能
+    output_path_text = ft.Text(f"輸出儲存於: {config.OUTPUT_DIR}", size=12, color=ft.Colors.GREY_700)
+    
+    def pick_output_dir_click(e):
+        try:
+            import tkinter as tk
+            from tkinter import filedialog
+            
+            root = tk.Tk()
+            root.withdraw()
+            root.attributes('-topmost', True)
+            
+            folder_selected = filedialog.askdirectory(
+                title="選擇輸出資料夾",
+                initialdir=config.OUTPUT_DIR
+            )
+            
+            root.destroy()
+            
+            if folder_selected:
+                config.set_output_dir(folder_selected)
+                output_path_text.value = f"輸出儲存於: {config.OUTPUT_DIR}"
+                log(f"輸出路徑已變更為: {config.OUTPUT_DIR}", "blue")
+                page.update()
+                
+        except Exception as ex:
+            log(f"選擇資料夾失敗: {ex}", "red")
+
+    pick_output_button = ft.OutlinedButton(
+        "變更輸出資料夾",
+        on_click=pick_output_dir_click,
+        height=30,
+    )
+
     page.add(
         ft.Column(
             [
                 ft.Text("NotebookLM 轉 PPTX 工具", size=30, weight="bold", color="blue"),
                 ft.Divider(),
                 ft.Row([pick_files_button], alignment="center"),
+                ft.Container(height=10),
+                ft.Row([output_path_text, pick_output_button], alignment="center"),
                 ft.Container(height=20),
                 ft.Row([status_text], alignment="center"),
                 progress_bar,
@@ -193,6 +229,6 @@ def main(page: ft.Page):
     )
 
 if __name__ == "__main__":
-    ft.app(main)
+    ft.app(target=main)
 
 

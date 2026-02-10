@@ -49,3 +49,10 @@ models/
 # 測試檔案
 test_*.pdf
 temp/
+
+# Build artifacts and installers
+build/
+installers/
+*.exe
+*.pkg
+*.pyz
