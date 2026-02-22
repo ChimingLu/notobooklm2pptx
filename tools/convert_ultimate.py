@@ -9,7 +9,7 @@ import sys
 from rich.console import Console
 import io
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from lib.pdf_processor import pdf_to_images
 from lib.ocr_opensource import extract_text_opensource
