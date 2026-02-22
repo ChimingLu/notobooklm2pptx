@@ -2,16 +2,20 @@
 
 ## 目前任務 (Task)
 
-將專案從依賴 Google API 的雲端版，徹底轉型為**完全免費、無 API 配額的本地應用程式**，並完成所有檔案的清理與優化。
+將專案從依賴 Google API 的雲端版，徹底轉型為**完全免費、無 API 配額的本地應用程式**，並完成所有檔案的清理、目錄結構優化與 GitHub 追蹤管理。
 
 ## 進度 (Progress)
 
 *   [x] **移除 Google API 依賴**：刪除 `google-genai` 與 `.env` API Key 設定，專案完全轉向本地模型。
 *   [x] **整合 Lama Cleaner**：取代雲端圖片清理 API，實現本地高精度去背。
 *   [x] **整合 EasyOCR**：取代雲端 OCR API，實現本地多語言辨識與排版還原。
-*   [x] **清理專案結構**：移除所有過時腳本 (`convert.py`, `convert_clean.py` 等) 與未使用的 Web 檔案。
-*   [x] **更新文檔與參考**：更新 `README.md`, `README_TEST.md` 以及 Memory Bank。
-*   [x] **優化 CLI 與 GUI**：確保雙介面都能順暢運作，並顯示正確的進度與狀態 (無需 API Key)。
+*   [x] **清理專案結構 (2026-02-22)**：
+    *   建立 `logs/` 資料夾並移入所有日誌檔，透過 `.gitignore` 禁止上傳。
+    *   建立 `trials/` 十資料夾存放試錯腳本、備份檔及單次性工具（如 `create_icon.py`）。
+    *   將雜亂的入口腳本 (`convert_free.py`, `convert_ultimate.py`) 移至 `tools/`。
+    *   精簡根目錄，僅保留 `main.py` 與 `gui.py` 作為核心入口。
+*   [x] **更新文檔與參考**：更新 `README.md` 以及 Memory Bank。
+*   [x] **優化 CLI 與 GUI**：確保雙介面順暢運作。
 
 ## 待辦事項 (Todos)
 

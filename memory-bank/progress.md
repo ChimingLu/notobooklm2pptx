@@ -23,6 +23,8 @@
   - [x] tools/verify.py - 環境驗證
   - [x] tools/check_pdf.py - PDF 資訊檢查
   - [x] tools/manage_api.py - API Key 管理
+  - [x] tools/convert_ultimate.py - 終極版腳本 (從根目錄移入)
+  - [x] tools/convert_free.py - 免費版腳本 (從根目錄移入)
 
 ### 文件與測試
 - [x] **使用文件**:
@@ -66,7 +68,10 @@
 - [x] OpenCV 效果不佳 → 改用 Lama Cleaner
 - [x] GUI icon 錯誤 → 已修正
 - [x] 模型名稱錯誤 → 已修正
-- [x] 檔案散亂 → 已整理目錄結構
+- [x] 檔案散亂 → 已整理目錄結構 (2026-02-22)
+  - [x] 建立 `logs/` 資料夾並忽略日誌檔
+  - [x] 建立 `trials/` 存放開發工具與備份
+  - [x] 根目錄僅保留 `main.py` 與 `gui.py` 作為入口
 
 ### 待解決
 - [ ] 首次使用需下載 Lama 模型（約 200MB）

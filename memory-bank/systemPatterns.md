@@ -5,7 +5,7 @@ The application follows a modular architecture, separating the core processing l
 
 ```mermaid
 flowchart TD
-    User -->|Interacts| CLI[CLI (main.py / convert_ultimate.py)]
+    User -->|Interacts| CLI[CLI (main.py / tools/convert_ultimate.py)]
     User -->|Interacts| GUI[GUI (gui.py)]
     
     CLI --> Core[Core Logic (lib/)]
@@ -27,7 +27,7 @@ flowchart TD
 ## Key Components
 
 ### 1. Interface Layer
-- **CLI (`main.py`, `convert_ultimate.py`)**: Provides command-line access with rich output. `convert_ultimate.py` is the primary entry point for high-quality local conversion.
+- **CLI (`main.py`, `tools/convert_ultimate.py`)**: Provides command-line access with rich output. `tools/convert_ultimate.py` is the primary entry point for high-quality local conversion (Ultimate Mode).
 - **GUI (`gui.py`)**: A Flet-based desktop application for user-friendly interaction.
 
 ### 2. Processing Layer (`lib/`)
