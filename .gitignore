@@ -46,9 +46,12 @@ output/*.pptx
 *.ckpt
 models/
 
-# 測試檔案
+# 測試與試錯檔案
 test_*.pdf
 temp/
+trials/
+*.bak
+*.tmp
 
 # Build artifacts and installers
 build/
