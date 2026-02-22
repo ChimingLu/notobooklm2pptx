@@ -60,19 +60,17 @@ python main.py
 
 | 功能 | 指令 | 特點 |
 |------|------|------|
-| **高品質轉換** (推薦) | `python convert_ultimate.py input.pdf` | 使用 Lama Cleaner 去背 + EasyOCR (品質最佳) |
-| **快速純文字** | `python convert_free.py input.pdf` | 僅提取文字，無背景圖 (速度最快) |
+| **高品質轉換** (推薦) | `python tools/convert_ultimate.py input.pdf` | 使用 Lama Cleaner 去背 + EasyOCR (品質最佳) |
+| **快速純文字** | `python tools/convert_free.py input.pdf` | 僅提取文字，無背景圖 (速度最快) |
 
 ## 專案結構
 
-清理後的專案結構更加精簡：
+清理後的專案結構更加精簡，GitHub 僅保留必要核心檔案：
 
 ```
 notobooklm2pptx/
 ├── gui.py                  # 🎨 GUI 主程式 (推薦入口)
 ├── main.py                 # 💻 CLI 主程式
-├── convert_ultimate.py     # ⭐ 高品質轉換腳本
-├── convert_free.py         # ⚡ 快速純文字轉換腳本
 ├── requirements.txt        # 📦 專案依賴
 ├── lib/                    # 📚 核心功能庫
 │   ├── image_cleaner_lama.py   # Lama Cleaner 去背模組
@@ -81,10 +79,13 @@ notobooklm2pptx/
 │   ├── pptx_generator.py       # PPTX 生成
 │   └── config.py               # 參數設定
 ├── tools/                  # 🛠️ 輔助工具
+│   ├── convert_ultimate.py     # ⭐ 高品質轉換腳本 (CLI)
+│   ├── convert_free.py         # ⚡ 快速純文字轉換腳本 (CLI)
 │   ├── verify.py               # 環境驗證腳本
 │   └── autotest.py             # 自動測試腳本
 ├── output/                 # 📂 輸出檔案預設路徑
-├── logs/                   # 📋 系統日誌
+├── logs/                   # 📋 系統日誌 (已忽略，不連同程式碼上傳)
+└── trials/                 # 🧪 測試與備份 (已忽略，不連同程式碼上傳)
 ```
 
 ## 🧪 測試與驗證

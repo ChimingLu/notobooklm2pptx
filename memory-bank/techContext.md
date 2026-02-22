@@ -33,8 +33,8 @@
 
 *   **`main.py`**: CLI 入口點，提供選單式操作。
 *   **`gui.py`**: GUI 入口點，提供檔案拖放與進度顯示。
-*   **`convert_ultimate.py`**: 獨立的高品質轉換腳本。
-*   **`convert_free.py`**: 獨立的純文字轉換腳本。
+*   **`tools/convert_ultimate.py`**: 獨立的高品質轉換腳本 (CLI)。
+*   **`tools/convert_free.py`**: 獨立的純文字轉換腳本 (CLI)。
 
 ### 數據流
 

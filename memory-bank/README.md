@@ -219,5 +219,5 @@ A: 查看 `references.md` 的「Gemini API」
 
 ---
 
-*Memory Bank 索引 v1.0*
-*最後更新: 2026-02-08*
+*Memory Bank 索引 v1.1*
+*最後更新: 2026-02-22*
