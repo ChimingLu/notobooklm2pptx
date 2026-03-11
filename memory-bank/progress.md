@@ -4,12 +4,13 @@
 
 ### 核心功能
 - [x] **PDF 解析**: 使用 pypdfium2，支援高解析度 (200-300 DPI)
-- [x] **OCR 文字辨識**: EasyOCR，支援中英文
+- [x] **圖片解析**: 支援讀取單張、多張圖片或整個圖片資料夾 (.png, .jpg, .webp 等)
+- [x] **OCR 文字辨識**: EasyOCR，支援中英文與動態門檻 (Min Confidence) 調整
 - [x] **圖片清理 (多種方案)**:
-  - [x] Lama Cleaner (IOPaint) - 專業級，效果最佳 ⭐
-  - [x] OpenCV Inpaint - 基礎方案
-  - [x] Gemini API - 需配額
-- [x] **PPTX 生成**: python-pptx，完整功能
+  - [x] Lama Cleaner (IOPaint) - 專業級，效果最佳 ⭐ 支援 HD 裁剪與遮罩擴展 (Expand Pixels) 設定
+  - [x] OpenCV Inpaint - 基礎方案 (作為 Lama 失敗時的備用 fallback)
+  - [x] Gemini API - 需配額 (已棄用/改為本地優先)
+- [x] **PPTX 生成**: python-pptx，完整功能，支援直式(Portrait)與橫式(Landscape)自適應版面
 
 ### 工具程式
 - [x] **CLI 版本**: main.py（互動式選單）
@@ -52,14 +53,14 @@
 - [ ] 使用者回饋收集
 
 ### 中期（1-2 月）
-- [ ] GUI 整合 Lama Cleaner
-- [ ] 批次處理多個 PDF
-- [ ] 進階設定介面
+- [x] GUI 整合 Lama Cleaner
+- [x] 批次處理多個 PDF / 圖片
+- [x] 進階設定介面 (擴展 px, OCR 門檻)
 
 ### 長期（3+ 月）
-- [ ] 打包為獨立執行檔
-- [ ] 建立安裝程式
-- [ ] 發布到 GitHub
+- [x] 打包為獨立執行檔
+- [ ] 建立安裝程式 (CI/CD Flow)
+- [ ] 發布到 GitHub Releases
 
 ## 已知問題
 
@@ -80,7 +81,14 @@
 
 ## 版本歷史
 
-### v3.0 (2026-02-08) - 終極版 ⭐
+### v3.1 (2026-03-xx) - 圖片支援與進階控制 ⭐
+- ✅ 支援圖片資料夾與多檔轉換 (不再侷限 PDF)
+- ✅ 開放 GUI / CLI 進階參數：自訂「遮罩擴展 (Expand Pixels)」與「OCR門檻 (Min Confidence)」
+- ✅ 全面修復 Flet tkinter 視窗對話框當機問題 (改用 Threading 隔離)
+- ✅ 支援直式與橫式混合來源，產出 PPTX 時自動切換版面
+- ✅ 使用 PyInstaller 打包為獨立視窗應用程式
+
+### v3.0 (2026-02-08) - 終極版
 - ✅ 整合 Lama Cleaner (IOPaint)
 - ✅ 專業級圖片清理
 - ✅ 完全免費方案

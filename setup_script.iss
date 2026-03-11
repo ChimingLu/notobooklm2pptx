@@ -2,8 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "NotebookLM To PPTX Converter"
-#define MyAppVersion "1.0"
-#define MyAppPublisher "AI Assistant"
+#define MyAppVersion "1.1"
+#define MyAppPublisher "ChiMing"
 #define MyAppExeName "NotebookLM2PPTX.exe"
 
 [Setup]
@@ -12,7 +12,7 @@
 AppId={{A1B2C3D4-E5F6-7890-ABCD-1234567890AB}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
+AppVerName={#MyAppName} v{#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\{#MyAppName}
 SetupIconFile=app_icon.ico
